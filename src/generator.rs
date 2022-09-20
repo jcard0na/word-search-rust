@@ -1,3 +1,4 @@
+use rand::{distributions::Uniform, prelude::Distribution, thread_rng};
 use std::cmp::max;
 use word_search_rust::{dictionary, partial_puzzle, puzzle_solver};
 
@@ -82,5 +83,24 @@ fn main() {
         .unwrap_or("assets/word_list.txt");
 
     let puzzle = generate(x, y, message, dictionary_file);
-    println!("{}", puzzle);
+    let random_puzzle = post_process(&puzzle);
+    print!("{}{}", random_puzzle, puzzle);
+}
+
+// If secret is a sequence  of dots, generate the puzzle, swap the dots 
+// with random characters, and print the solved puzzle.
+fn post_process(puzzle: &str) -> String {
+    let mut rng = thread_rng();
+    let characters = Uniform::from(b'A'..b'Z');
+
+    let random_puzzle: String = puzzle
+        .clone()
+        .chars()
+        .map(|x| match x {
+            '.' => characters.sample(&mut rng) as char,
+            _ => x,
+        })
+        .collect();
+
+    random_puzzle
 }

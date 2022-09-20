@@ -80,10 +80,10 @@ impl fmt::Display for Puzzle {
         });
 
         buffer.push('\n');
-        self.words.iter().for_each(|w| {
-            buffer.push_str(w);
-            buffer.push('\n')
-        });
+        // self.words.iter().for_each(|w| {
+        //     buffer.push_str(w);
+        //     buffer.push('\n')
+        // });
 
         write!(f, "{}", buffer)
     }

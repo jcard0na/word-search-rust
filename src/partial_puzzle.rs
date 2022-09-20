@@ -2,7 +2,7 @@ use crate::puzzle::{Location, DIRECTIONS};
 use rand::Rng;
 use std::collections::HashSet;
 use std::fmt;
-use std::iter::FromIterator;
+//use std::iter::FromIterator;
 
 struct RandomDirectionIterator {
     offset: usize,
@@ -199,9 +199,9 @@ impl PartialPuzzle {
             }
             buffer.push('\n');
         }
-        buffer.push('\n');
+        //buffer.push('\n');
 
-        buffer.push_str(Vec::from_iter(self.words.clone()).join("\n").as_str());
+        //buffer.push_str(Vec::from_iter(self.words.clone()).join("\n").as_str());
 
         buffer
     }
